@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pizza App</title>
+    <!-- Latest compiled and minified CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body class="bd-docs" data-spy="scroll" data-target=".bd-sidenav-active">
+
+    <div class="container">
+    <form action="" style="margin-top:100px">
+
+        <h3>Size</h3>
+        <div class="gp">
+            <input type="radio" id="size_s" name="size" value="s" checked> Small<br>
+            <input type="radio" id="size_m" name="size" value="m"> Medium<br>
+            <input type="radio" id="size_l" name="size" value="l"> Large
+        </div>
+        <h3>Crust</h3>
+        <div class="gp">
+            <input type="radio" id="crust_t" name="crust" value="t" checked> Thin<br>
+            <input type="radio" id="crust_r" name="crust" value="r"> Regular<br>
+            <input type="radio" id="crust_d" name="crust" value="d"> Deep Dish <br>
+        </div>
+        <br>
+        <h3>Sauce</h3>
+        <div class="gp">
+            <input type="radio" id="sauce_r" name="sauce" value="r" checked> Red<br>
+            <input type="radio" id="sauce_w" name="sauce" value="w"> White<br>
+            <input type="radio" id="sauce_g" name="sauce" value="g"> Green <br>
+        </div>
+        <h3>Toppings</h3>
+        <div class="gp"><br>
+            <input type="checkbox" name="sauce" id="id_sauce"> Pepperoni
+            <input type="checkbox" name="sauce" id="id_sauce"> Onion
+            <input type="checkbox" name="sauce" id="id_sauce"> Sausage
+            <input type="checkbox" name="sauce" id="id_sauce"> Mushrooms
+            <input type="checkbox" name="sauce" id="id_sauce"> Peppers
+            <input type="checkbox" name="sauce" id="id_sauce"> Olives
+            <input type="checkbox" name="sauce" id="id_sauce"> Garlic
+        </div>
+
+        <button onclick="myFunction()">Calcular</button>
+      </form>
+    </div>
+
+    <script>
+            function myFunction() {
+
+                var inputElems = document.getElementsByTagName("input"),
+                count_toppings = 0;
+
+                for (var i=0; i<inputElems.length; i++) {       
+                    if (inputElems[i].type == "checkbox" && inputElems[i].checked == true){
+                        count_toppings++;
+                    }
+                }
+                if(count_toppings>3){
+                    alert("error: so many Toppings")
+                }else{
+                    
+                    if (document.getElementById('size_s').checked) {
+                        size = document.getElementById('size_s').value;
+                    }
+                    if (document.getElementById('size_m').checked) {
+                        size = document.getElementById('size_m').value;
+                    }
+                    if (document.getElementById('size_l').checked) {
+                        size = document.getElementById('size_l').value;
+                    }
+
+                    if (document.getElementById('crust_t').checked) {
+                        crust = document.getElementById('crust_t').value;
+                    }
+                    if (document.getElementById('crust_r').checked) {
+                        crust = document.getElementById('crust_r').value;
+                    }
+                    if (document.getElementById('crust_d').checked) {
+                        crust = document.getElementById('crust_d').value;
+                    }
+
+                    toopings_value=0;
+                    switch (size) {
+                        case "s":
+                            switch (crust) {
+                                case "t":
+                                    value = 12;
+                                    break;
+                                case "r":
+                                    value = 14;
+                                    break;
+                                case "d":
+                                    value = 16;
+                                    break;
+                            }
+                        
+                            switch (count_toppings) {
+                                case 1:
+                                    toopings_value = 1;
+                                    break;
+                                case 2:
+                                    toopings_value = 2;
+                                    break;
+                                case 3:
+                                    toopings_value = 3;
+                                    break;
+                            }
+                            break;
+                        case "m":
+                            switch (crust) {
+                                case "t":
+                                    value = 15;
+                                    break;
+                                case "r":
+                                    value = 17;
+                                    break;
+                                case "d":
+                                    value = 21;
+                                    break;
+                            }
+                        
+                            switch (count_toppings) {
+                                case 1:
+                                    toopings_value = 2;
+                                    break;
+                                case 2:
+                                    toopings_value = 4;
+                                    break;
+                                case 3:
+                                    toopings_value = 6;
+                                    break;
+                            }
+                            break;
+                        case "l":
+                            switch (crust) {
+                                case "t":
+                                    value = 18;
+                                    break;
+                                case "r":
+                                    value = 21;
+                                    break;
+                                case "d":
+                                    value = 26;
+                                    break;
+                            }
+                        
+                            switch (count_toppings) {
+                                case 1:
+                                    toopings_value = 3;
+                                    break;
+                                case 2:
+                                    toopings_value = 6;
+                                    break;
+                                case 3:
+                                    toopings_value = 9;
+                                    break;
+                            }
+                            break;
+                        
+                    }
+
+    //                alert("->"+size+"->"+crust+"->"+value+"->"+toopings_value);
+                    alert(
+                        "Pizza Price: "+(value)+"\n"+
+                        "Toppings Price: "+(toopings_value)+"\n"+
+                        "Total Price: "+(value+toopings_value)
+                    
+                    );
+                }
+                
+            }
+            </script>
+
+</body>
+<!-- </html> -->
